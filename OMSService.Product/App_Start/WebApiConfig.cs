@@ -1,18 +1,18 @@
-﻿using System;  
-using System.Web.Http;  
-using OMSService.Campaing.Controllers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 
-namespace OMSService.Campaing
+namespace OMSService.WSProduct
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Configuración y servicios de API web
 
-            // Web API routes
+            // Rutas de API web
             config.MapHttpAttributeRoutes();
-            config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

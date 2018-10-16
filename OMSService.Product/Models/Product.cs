@@ -1,4 +1,4 @@
-namespace OMSService.Campaing.Models
+namespace OMSService.WSProduct.Models
 {
     using System;
     using System.Collections.Generic;
@@ -9,12 +9,6 @@ namespace OMSService.Campaing.Models
     [Table("Product")]
     public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            Campaign = new HashSet<Campaign>();
-        }
-
         [Key]
         public long idProduct { get; set; }
 
@@ -50,7 +44,9 @@ namespace OMSService.Campaing.Models
 
         public string description { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Campaign> Campaign { get; set; }
+        public long? IdUser { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? EventDate { get; set; }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Web.Http;
-using OMSService.Campaing.Payload;
+using OMSService.WSLogin.Payload;
+using OMSService.WSLogin.Business;
 
-namespace OMSService.Campaing.Controllers
+namespace OMSService.WSLogin.Controllers
 {
-    /// <summary>
-    /// login controller class for authenticate users
-    /// </summary>
     [AllowAnonymous]
-    [RoutePrefix("api/login")]
+    [RoutePrefix("login")]
     public class LoginController : ApiController
     {
         [HttpGet]
@@ -18,14 +18,6 @@ namespace OMSService.Campaing.Controllers
         public IHttpActionResult EchoPing()
         {
             return Ok(true);
-        }
-
-        [HttpGet]
-        [Route("echouser")]
-        public IHttpActionResult EchoUser()
-        {
-            var identity = Thread.CurrentPrincipal.Identity;
-            return Ok($" IPrincipal-user: {identity.Name} - IsAuthenticated: {identity.IsAuthenticated}");
         }
 
         [HttpPost]
@@ -36,7 +28,10 @@ namespace OMSService.Campaing.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             //TODO: Validate credentials Correctly, this code is only for demo !!
-            bool isCredentialValid = (login.Password == "123456");
+            // bool isCredentialValid = (login.Password == "123456");
+            ILoginManager mlogin = new ILoginManager();
+            bool isCredentialValid = mlogin.LoginUser(login);
+
             if (isCredentialValid)
             {
                 var token = TokenGenerator.GenerateTokenJwt(login.Username);

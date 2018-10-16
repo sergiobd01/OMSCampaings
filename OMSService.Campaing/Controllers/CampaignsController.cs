@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using OMSService.Campaing.Models;
+﻿using System.Web.Http;
+using OMSService.Campaing.Business;
+
 
 namespace OMSService.Campaing.Controllers
 {
     [Authorize]
-
-    [RoutePrefix("api/Campaigns")]
+    //[AllowAnonymous]
+    [RoutePrefix("Campaign")]
     public class CampaignsController : ApiController
     {
+        [HttpGet]
+        [Route("GetCampins")]
         public IHttpActionResult GetAll()
         {
-            OMSModel model = new OMSModel();
-            var campaing = model.Campaign.ToList(); 
+            ICampaingManager mca = new ICampaingManager();
+            var campaing = mca.GetAllCampaing();
+
             return Ok(campaing);
         }
     }

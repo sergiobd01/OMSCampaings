@@ -3,9 +3,9 @@ using System.Configuration;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 
-namespace OMSService.Campaing.Controllers
+namespace OMSService.WSLogin.Controllers
 {
-    internal static class TokenGenerator
+    public class TokenGenerator
     {
         public static string GenerateTokenJwt(string username)
         {

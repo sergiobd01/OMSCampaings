@@ -1,14 +1,14 @@
-namespace OMSService.Campaing.Models
+namespace OMSService.Model
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class OMSModel : DbContext
+    public partial class ModelOMS : DbContext
     {
-        public OMSModel()
-            : base("name=OMSModel")
+        public ModelOMS()
+            : base("name=ModelOMS")
         {
         }
 

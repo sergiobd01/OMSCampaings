@@ -1,4 +1,4 @@
-namespace OMSService.Campaing.Models
+namespace OMSService.WSLogin.Models
 {
     using System;
     using System.Data.Entity;
@@ -12,20 +12,24 @@ namespace OMSService.Campaing.Models
         {
         }
 
-        public virtual DbSet<Campaign> Campaign { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Campaign>()
-                .Property(e => e.name)
+            modelBuilder.Entity<User>()
+                .Property(e => e.email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Campaign>()
-                .Property(e => e.urlImage)
+            modelBuilder.Entity<User>()
+                .Property(e => e.userName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Campaign>()
-                .Property(e => e.description)
+            modelBuilder.Entity<User>()
+                .Property(e => e.pass)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Rol)
                 .IsUnicode(false);
         }
     }
