@@ -18,7 +18,7 @@ namespace OMSService.WSProduct.Business
         }
         public Product GetProductId(long IdProduct)
         {
-            OMSModel model = new OMSModel();
+             OMSModel model = new OMSModel();
             var product = model.Product.First(p => p.idProduct == IdProduct);
             return product;
         }

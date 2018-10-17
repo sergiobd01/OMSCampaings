@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
+using OMSService.WSLogin.Controllers;
 
 namespace OMSService.WSLogin
 {
@@ -13,6 +12,7 @@ namespace OMSService.WSLogin
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
