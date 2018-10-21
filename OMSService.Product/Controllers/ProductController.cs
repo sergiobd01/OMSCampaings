@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
 using OMSService.WSProduct.Business;
+using OMSService.WSProduct.Payload;
+using OMSService.WSProduct.Models;
 
 namespace OMSService.WSProduct.Controllers
 {
@@ -48,14 +50,24 @@ namespace OMSService.WSProduct.Controllers
             return Ok(products);
         }
 
-        /*[HttpGet]
-        [Route("GetProducts")]
+        [HttpPost]
+        [Route("GetTopProducts")]
         public IHttpActionResult GetTopProduct(TopRequest topRequest)
         {
-            IProducManager mprod = new IProducManager();
-            var products = mprod.GetTopProduct(topRequest.FechaInicio, topRequest.FechaFin);
+            DALProduct dalbase = new DALProduct();
+            var products = dalbase.GetTopProduct(topRequest.DateBegin, topRequest.DateEnd);
 
             return Ok(products);
-        }*/
+        }
+
+        [HttpPost]
+        [Route("GetNewProduct")]
+        public IHttpActionResult GetTopProduct(Product product)
+        {
+            IProducManager mprod = new IProducManager();
+            var response = mprod.PostProductCreate(product);
+
+            return Ok(response);
+        }
     }
 }

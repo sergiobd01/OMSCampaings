@@ -106,14 +106,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Business\DALBase.cs" />
+    <Compile Include="Business\DALProduct.cs" />
     <Compile Include="Business\IProducManager.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommonBase.cs" />
     <Compile Include="Models\OMSModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\TopProducts.cs" />
+    <Compile Include="Payload\Response.cs" />
     <Compile Include="Payload\TopRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

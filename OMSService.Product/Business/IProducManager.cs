@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using OMSService.WSProduct.Models;
-using System.Data.Entity;
+using OMSService.WSProduct.Payload;
+
 
 namespace OMSService.WSProduct.Business
 {
@@ -18,7 +18,7 @@ namespace OMSService.WSProduct.Business
         }
         public Product GetProductId(long IdProduct)
         {
-             OMSModel model = new OMSModel();
+            OMSModel model = new OMSModel();
             var product = model.Product.First(p => p.idProduct == IdProduct);
             return product;
         }
@@ -41,12 +41,27 @@ namespace OMSService.WSProduct.Business
             return products;
         }
 
-      /*  public IList<View_TopProduct> GetTopProduct(DateTime fechaInicio, DateTime fechaFin)
+        public Response PostProductCreate(Product product)
         {
+            var response = new Response();
             OMSModel model = new OMSModel();
-            var products = model.View_TopProduct.Where(p => p.Date >= fechaInicio 
-                                                        && p.Date <= fechaFin).ToList();
-            return products;
-        }*/
+            try
+            {
+                model.Product.Add(product);
+                var products = model.SaveChanges();
+
+                response.Code = 0;
+                response.Description = "Producto Creado";
+            }
+            catch (Exception ext)
+            {
+                response.Code = 515;
+                response.Description = ext.Message;
+                return response;
+            }
+           
+
+            return response;
+        }
     }
 }
