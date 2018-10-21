@@ -61,11 +61,20 @@ namespace OMSService.WSProduct.Controllers
         }
 
         [HttpPost]
-        [Route("GetNewProduct")]
-        public IHttpActionResult GetTopProduct(Product product)
+        [Route("NewProduct")]
+        public IHttpActionResult PostNewProduct(Product product)
         {
             IProducManager mprod = new IProducManager();
             var response = mprod.PostProductCreate(product);
+
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("UpdateProduct")]
+        public IHttpActionResult PostUpdateProduct(Product product)
+        {
+            IProducManager mprod = new IProducManager();
+            var response = mprod.PostProductUpdate(product);
 
             return Ok(response);
         }

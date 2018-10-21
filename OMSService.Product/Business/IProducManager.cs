@@ -12,45 +12,79 @@ namespace OMSService.WSProduct.Business
 
         public IList<Product> GetAllProduct()
         {
-            OMSModel model = new OMSModel();
-            var products = model.Product.ToList();
+            OMSModel objContext = new OMSModel();
+            var products = new List<Product>();
+            try
+            {
+                products = objContext.Product.ToList();
+            }
+            catch (Exception ext)
+            {
+                throw ext;
+            }
             return products;
         }
         public Product GetProductId(long IdProduct)
         {
-            OMSModel model = new OMSModel();
-            var product = model.Product.First(p => p.idProduct == IdProduct);
+            OMSModel objContext = new OMSModel();
+            var product = new Product();
+            try
+            {
+               product = objContext.Product.First(p => p.idProduct == IdProduct);
+            }
+            catch (Exception ext)
+            {
+                throw ext;
+            }
             return product;
         }
 
         public IList<Product> GetProductName(string name)
         {
-            name = name.Replace("%", "");
-            name = name.Replace("*", "");
-            OMSModel model = new OMSModel();
-            var products = model.Product.Where(p => p.name.Contains(name)).ToList();
+
+            OMSModel objContext = new OMSModel();
+            var products = new List<Product>();
+            try
+            {
+                name = name.Replace("%", "");
+                name = name.Replace("*", "");
+                products = objContext.Product.Where(p => p.name.Contains(name)).ToList();
+            }
+            catch (Exception ext)
+            {
+                throw ext;
+            }
             return products;
         }
 
         public IList<Product> GetProductDescription(string description)
         {
-            description = description.Replace("%", "");
-            description = description.Replace("*", "");
-            OMSModel model = new OMSModel();
-            var products = model.Product.Where(p => p.description.Contains(description)).ToList();
+            OMSModel objContext = new OMSModel();
+            var products = new List<Product>();
+            try
+            {
+                description = description.Replace("%", "");
+                description = description.Replace("*", "");
+
+                products = objContext.Product.Where(p => p.description.Contains(description)).ToList();
+            }
+            catch (Exception ext)
+            {
+                throw ext;
+            }
             return products;
         }
 
         public Response PostProductCreate(Product product)
         {
             var response = new Response();
-            OMSModel model = new OMSModel();
+            OMSModel objContext = new OMSModel();
             try
             {
-                model.Product.Add(product);
-                var products = model.SaveChanges();
+                objContext.Product.Add(product);
+                var res = objContext.SaveChanges();
 
-                response.Code = 0;
+                response.Code = res;
                 response.Description = "Producto Creado";
             }
             catch (Exception ext)
@@ -59,7 +93,58 @@ namespace OMSService.WSProduct.Business
                 response.Description = ext.Message;
                 return response;
             }
-           
+
+            return response;
+        }
+        public Response PostProductUpdate(Product model)
+        {
+            var response = new Response();
+            OMSModel objContext = new OMSModel();
+            try
+            {
+                var products = objContext.Product.Where(p => p.idProduct == model.idProduct).SingleOrDefault();
+
+                if (products != null)
+                {
+                    objContext.Entry(products).CurrentValues.SetValues(model);
+                    var res =  objContext.SaveChanges();
+
+                    response.Code = res;
+                    response.Description = "Producto modificado";
+                }
+            }
+            catch (Exception ext)
+            {
+                response.Code = 515;
+                response.Description = ext.Message;
+                return response;
+            }
+    
+            return response;
+        }
+        public Response PostProductDelete(Product model)
+        {
+            var response = new Response();
+            OMSModel objContext = new OMSModel();
+            try
+            {
+                var products = objContext.Product.Where(p => p.idProduct == model.idProduct).SingleOrDefault();
+
+                if (products != null)
+                {
+                    objContext.Entry(products).CurrentValues.SetValues(model);
+                    var res = objContext.SaveChanges();
+
+                    response.Code = res;
+                    response.Description = "Producto modificado";
+                }
+            }
+            catch (Exception ext)
+            {
+                response.Code = 515;
+                response.Description = ext.Message;
+                return response;
+            }
 
             return response;
         }
