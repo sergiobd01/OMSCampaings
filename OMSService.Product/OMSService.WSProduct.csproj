@@ -118,7 +118,9 @@
     <Compile Include="Models\OMSModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\TopProducts.cs" />
+    <Compile Include="Payload\RequestValue.cs" />
     <Compile Include="Payload\Response.cs" />
+    <Compile Include="Payload\ResponseProduct.cs" />
     <Compile Include="Payload\TopRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

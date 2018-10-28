@@ -3,27 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using OMSService.WSProduct.Models;
 using OMSService.WSProduct.Payload;
+using System.Configuration;
 
 
 namespace OMSService.WSProduct.Business
 {
     public class IProducManager
     {
-
-        public IList<Product> GetAllProduct()
+        public int Pagination()
         {
             OMSModel objContext = new OMSModel();
-            var products = new List<Product>();
+
+            int pages = Convert.ToInt32(ConfigurationManager.AppSettings["PAGES"]);
             try
             {
-                products = objContext.Product.ToList();
+                int count = objContext.Product.Count();
+                return count / pages;
             }
             catch (Exception ext)
             {
                 throw ext;
             }
-            return products;
         }
+
+        //public List<Product> GetAllProduct()
+        //{
+        //    OMSModel objContext = new OMSModel();
+        //    var products = new List<Product>();
+        //    try
+        //    {
+        //        products = objContext.Product.ToList();
+        //    }
+        //    catch (Exception ext)
+        //    {
+        //        throw ext;
+        //    }
+
+        //    return products;
+        //}
         public Product GetProductId(long IdProduct)
         {
             OMSModel objContext = new OMSModel();

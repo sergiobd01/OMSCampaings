@@ -10,14 +10,33 @@ namespace OMSService.WSProduct.Controllers
     [RoutePrefix("Product")]
     public class ProductController : ApiController
     {
+        //[HttpGet]
+        //[Route("GetProducts")]
+        //public IHttpActionResult GetAll()
+        //{
+        //    IProducManager mprod = new IProducManager();
+
+        //    var responseProducs = new ResponseProduct();
+        //    responseProducs.totalPaginas = mprod.Pagination();
+
+        //    responseProducs.products = mprod.GetAllProduct();
+
+        //    return Ok(responseProducs);
+        //}
+
         [HttpGet]
-        [Route("GetProducts")]
-        public IHttpActionResult GetAll()
+        [Route("GetProducts/{page}")]
+        public IHttpActionResult GetAll(int page)
         {
             IProducManager mprod = new IProducManager();
-            var products = mprod.GetAllProduct();
+            DALProduct dalProduct = new DALProduct();
 
-            return Ok(products);
+            var responseProducs = new ResponseProduct();
+            responseProducs.totalPaginas = mprod.Pagination();
+
+            responseProducs.products = dalProduct.GetProducts(page);
+
+            return Ok(responseProducs);
         }
 
         [HttpGet]
@@ -30,22 +49,22 @@ namespace OMSService.WSProduct.Controllers
             return Ok(products);
         }
 
-        [HttpGet]
-        [Route("GetProducts")]
-        public IHttpActionResult GetProductName(string name)
+        [HttpPost]
+        [Route("GetName")]
+        public IHttpActionResult GetProductName(RequestValue requestValue)
         {
-            IProducManager mprod = new IProducManager();
-            var products = mprod.GetProductName(name);
+            DALProduct mprod = new DALProduct();
+            var products = mprod.GetProductName(requestValue.Value, requestValue.Page);
 
             return Ok(products);
         }
 
-        [HttpGet]
-        [Route("GetProducts")]
-        public IHttpActionResult GetProductDescription(string description)
+        [HttpPost]
+        [Route("GetDescription")]
+        public IHttpActionResult GetProductDescription(RequestValue requestValue)
         {
-            IProducManager mprod = new IProducManager();
-            var products = mprod.GetProductDescription(description);
+            DALProduct mprod = new DALProduct();
+            var products = mprod.GetProductDescrip(requestValue.Value, requestValue.Page);
 
             return Ok(products);
         }

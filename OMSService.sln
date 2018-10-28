@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSLogin", "OMSSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSLogin.Tests", "OMSService.WSLogin.Tests\OMSService.WSLogin.Tests.csproj", "{4A192A09-5277-4E26-9F38-69E61007168C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSOrder", "OMSService.WSOrdenes\OMSService.WSOrder.csproj", "{6AF39DAA-FB56-4A98-A693-D27915D879E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSOrdenes.Tests", "OMSService.WSOrdenes.Tests\OMSService.WSOrdenes.Tests.csproj", "{A4284620-EC32-40B1-8F7F-C990A326887E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{4A192A09-5277-4E26-9F38-69E61007168C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A192A09-5277-4E26-9F38-69E61007168C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A192A09-5277-4E26-9F38-69E61007168C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF39DAA-FB56-4A98-A693-D27915D879E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF39DAA-FB56-4A98-A693-D27915D879E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF39DAA-FB56-4A98-A693-D27915D879E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF39DAA-FB56-4A98-A693-D27915D879E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4284620-EC32-40B1-8F7F-C990A326887E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4284620-EC32-40B1-8F7F-C990A326887E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4284620-EC32-40B1-8F7F-C990A326887E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4284620-EC32-40B1-8F7F-C990A326887E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
