@@ -47,6 +47,6 @@ namespace OMSService.WSProduct.Models
         public long? IdUser { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? EventDate { get; set; }
+        public DateTime? modificationDate { get; set; }
     }
 }

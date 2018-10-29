@@ -165,23 +165,23 @@ namespace OMSService.WSProduct.Business
                 {
                     Product item = new Product();
 
-                    if (reader["idProduct"] != null) item.idProduct = (long)reader["idProduct"];
-                    if (reader["idTransport"].ToString() != "") item.idTransport = (long)reader["idTransport"];
-                    if (reader["idTransport"] != null) item.idEntertainment = (long)reader["idEntertainment"];
-                    if (reader["idTransport"] != null) item.idHotel = (long)reader["idHotel"];
+                    if (reader["idProduct"].ToString() != "") item.idProduct = (long)reader["idProduct"];
+                    item.idTransport = (long)reader["idTransport"];
+                    if (reader["idTransport"].ToString() != "") item.idEntertainment = (long)reader["idEntertainment"];
+                    if (reader["idTransport"].ToString() != "") item.idHotel = (long)reader["idHotel"];
                     item.name = reader["name"].ToString();
                     item.urlImage = reader["urlImage"].ToString();
-                    if (reader["idTransport"] != null) item.price = (decimal)reader["price"];
-                    if (reader["discountRate"] == null) item.discountRate = (decimal)reader["discountRate"];
+                    if (reader["idTransport"].ToString() != "") item.price = (decimal)reader["price"];
+                    if (reader["discountRate"].ToString() != "") item.discountRate = (decimal)reader["discountRate"];
                     item.code = reader["code"].ToString();
-                    if (reader["source_city"] == null) item.source_city = (long)reader["source_city"];
-                    if (reader["target_city"] == null) item.target_city = (long)reader["target_city"];
+                    if (reader["source_city"].ToString() != "") item.source_city = (long)reader["source_city"];
+                    if (reader["target_city"].ToString() != "") item.target_city = (long)reader["target_city"];
                     if (reader["spectacle_date"].ToString() != "") item.spectacle_date = (DateTime)reader["spectacle_date"];
                     if (reader["arrival_date"].ToString() != "") item.arrival_date = (DateTime)reader["arrival_date"];
                     if (reader["departure_date"].ToString() != "") item.departure_date = (DateTime)reader["departure_date"];
                     item.description = reader["description"].ToString();
                     if (reader["IdUser"].ToString() != "") item.IdUser = (long?)reader["IdUser"];
-                    if (reader["EventDate"].ToString() != "") item.EventDate = (DateTime)reader["EventDate"];
+                    if (reader["modificationDate"].ToString() != "") item.modificationDate = (DateTime)reader["modificationDate"];
 
                     dtoList.Add(item);
 

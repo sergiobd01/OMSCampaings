@@ -32,7 +32,5 @@ namespace OMSService.WSOrder.Models
 
         public long? IdUser { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? EventDate { get; set; }
     }
 }
