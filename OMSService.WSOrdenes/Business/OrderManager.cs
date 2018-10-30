@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using OMSService.WSOrder.Models;
+using OMSService.WSOrder.Payload;
 
 namespace OMSService.WSOrder.Business
 {
@@ -27,23 +26,29 @@ namespace OMSService.WSOrder.Business
             }
             return Order;
         }
-        public Order GetOrderIdProduc(long IdOrder)
+        public Order DeleteOrder(long IdOrder)
         {
+            var response = new Response();
             OMSModel objContext = new OMSModel();
             var Order = new Order();
-            //try
-            //{
-            //    if (objContext.Order.Count(p => p.idOrder == IdOrder) > 0)
-            //    {
-            //        Order = objContext.Order.wh(p => p.idOrder == IdOrder);
-            //    }
+            try
+            {
+                var order = objContext.Order.Where(p => p.idOrder == IdOrder).SingleOrDefault();
+                if (order != null)
+                {
+                    order.idStateOrder = 5;
+                    objContext.Entry(order).CurrentValues.SetValues(order);
+                    var res = objContext.SaveChanges();
 
-            //}
-            //catch (Exception ext)
-            //{
-            //    throw ext;
+                    response.Code = res;
+                    response.Description = "Orden Cancelada";
+                }
 
-            //}
+            }
+            catch (Exception ext)
+            {
+                throw ext;
+            }
             return Order;
         }
     }

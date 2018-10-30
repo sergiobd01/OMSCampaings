@@ -139,17 +139,17 @@ namespace OMSService.WSProduct.Business
     
             return response;
         }
-        public Response DeleteProductDelete(Product model)
+        public Response DeleteProduct(long Idproduct)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();
             try
             {
-                var products = objContext.Product.Where(p => p.idProduct == model.idProduct).SingleOrDefault();
+                var products = objContext.Product.Where(p => p.idProduct == Idproduct).SingleOrDefault();
 
                 if (products != null)
                 {
-                    objContext.Entry(products).CurrentValues.SetValues(model);
+                    objContext.Product.Remove(products);
                     var res = objContext.SaveChanges();
 
                     response.Code = res;

@@ -97,5 +97,15 @@ namespace OMSService.WSProduct.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete]
+        [Route("DeleteProduct")]
+        public IHttpActionResult DeleteProduct(long Id)
+        {
+            IProducManager mprod = new IProducManager();
+            var response = mprod.DeleteProduct(Id);
+
+            return Ok(response);
+        }
     }
 }
