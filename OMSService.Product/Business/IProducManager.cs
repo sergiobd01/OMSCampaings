@@ -56,41 +56,41 @@ namespace OMSService.WSProduct.Business
             return product;
         }
 
-        public IList<Product> GetProductName(string name)
-        {
+        //public IList<Product> GetProductName(string name)
+        //{
 
-            OMSModel objContext = new OMSModel();
-            var products = new List<Product>();
-            try
-            {
-                name = name.Replace("%", "");
-                name = name.Replace("*", "");
-                products = objContext.Product.Where(p => p.name.Contains(name)).ToList();
-            }
-            catch (Exception ext)
-            {
-                throw ext;
-            }
-            return products;
-        }
+        //    OMSModel objContext = new OMSModel();
+        //    var products = new List<Product>();
+        //    try
+        //    {
+        //        name = name.Replace("%", "");
+        //        name = name.Replace("*", "");
+        //        products = objContext.Product.Where(p => p.name.Contains(name)).ToList();
+        //    }
+        //    catch (Exception ext)
+        //    {
+        //        throw ext;
+        //    }
+        //    return products;
+        //}
 
-        public IList<Product> GetProductDescription(string description)
-        {
-            OMSModel objContext = new OMSModel();
-            var products = new List<Product>();
-            try
-            {
-                description = description.Replace("%", "");
-                description = description.Replace("*", "");
+        //public IList<Product> GetProductDescription(string description)
+        //{
+        //    OMSModel objContext = new OMSModel();
+        //    var products = new List<Product>();
+        //    try
+        //    {
+        //        description = description.Replace("%", "");
+        //        description = description.Replace("*", "");
 
-                products = objContext.Product.Where(p => p.description.Contains(description)).ToList();
-            }
-            catch (Exception ext)
-            {
-                throw ext;
-            }
-            return products;
-        }
+        //        products = objContext.Product.Where(p => p.description.Contains(description)).ToList();
+        //    }
+        //    catch (Exception ext)
+        //    {
+        //        throw ext;
+        //    }
+        //    return products;
+        //}
 
         public Response PostProductCreate(Product product)
         {
@@ -139,7 +139,7 @@ namespace OMSService.WSProduct.Business
     
             return response;
         }
-        public Response PostProductDelete(Product model)
+        public Response DeleteProductDelete(Product model)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();
@@ -153,7 +153,7 @@ namespace OMSService.WSProduct.Business
                     var res = objContext.SaveChanges();
 
                     response.Code = res;
-                    response.Description = "Producto modificado";
+                    response.Description = "Producto Eliminado";
                 }
             }
             catch (Exception ext)
