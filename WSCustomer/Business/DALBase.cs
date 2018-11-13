@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using OMSService.WSProduct.Models;
+using OMSService.WSCustomer.Models;
+using OMSService.WSCustomer.Payload;
 
-namespace OMSService.WSProduct.Business
+namespace OMSService.WSCustomer.Business
 {
     public class DALBase
     {
@@ -67,6 +68,27 @@ namespace OMSService.WSProduct.Business
             return parameter;
         }
 
+        /// <summary>
+        /// Create long parameter
+        /// </summary>
+        /// <param name="name">Parameters name.</param>
+        /// <param name="value">parameters value.</param>
+        /// <returns>SqlParameter</returns>
+        protected static SqlParameter CreateParameter(string name, long value)
+        {
+            SqlParameter parameter = new SqlParameter();
+            if (value == CommonBase.Int_NullValue)
+            {
+                // If value is null then create a null parameter
+                return CreateNullParameter(name, SqlDbType.Int);
+            }
+            else
+            {
+                parameter = CreateINParameter(name, SqlDbType.Int);
+                parameter.Value = value;
+                return parameter;
+            }
+        }
         #region CreateParameter
 
         /// <summary>
@@ -117,9 +139,9 @@ namespace OMSService.WSProduct.Business
         #region Singleton
 
 
-        protected static List<TopProducts> GetDTOListJSON<T>(ref SqlCommand command) where T : CommonBase
+        protected static List<Customer> GetCustomer(ref SqlCommand command) //where T : CommonBase
         {
-            List<TopProducts> dtoList = new List<TopProducts>();
+            List<Customer> dtoList = new List<Customer>();
             try
             {
                 command.Connection.Open();
@@ -127,60 +149,22 @@ namespace OMSService.WSProduct.Business
 
                 while (reader.Read())
                 {
-                    TopProducts item = new TopProducts()
-                    {
-                        IdProduct = (long)reader["idProduct"],
-                        Name = reader["name"].ToString(),
-                        Description = reader["description"].ToString(),
-                        IdEntertainment = (long)reader["idEntertainment"],
-                        Cantidad = (int)reader["cantidad"]
+                    Customer item = new Customer();
 
-                    };
-                    dtoList.Add(item);
-
-                }
-                reader.Close();
-            }
-            catch (SqlException oEx)
-            {
-                throw oEx;
-            }
-            finally
-            {
-                command.Connection.Close();
-                command.Connection.Dispose();
-            }
-            return dtoList;
-        }
-
-        protected static List<Product> GetProducts(ref SqlCommand command) //where T : CommonBase
-        {
-            List<Product> dtoList = new List<Product>();
-            try
-            {
-                command.Connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-     
-                while (reader.Read())
-                {
-                    Product item = new Product();
-
-                    if (reader["idProduct"].ToString() != "") item.idProduct = (long)reader["idProduct"];
-                    if (reader["idTransport"].ToString() != "") item.idTransport = (long)reader["idTransport"];
-                    if (reader["idEntertainment"].ToString() != "") item.idEntertainment = (long)reader["idEntertainment"];
-                    if (reader["idHotel"].ToString() != "") item.idHotel = (long)reader["idHotel"];
-                    item.name = reader["name"].ToString();
-                    item.urlImage = reader["urlImage"].ToString();
-                    if (reader["price"].ToString() != "") item.price = (decimal)reader["price"];
-                    if (reader["discountRate"].ToString() != "") item.discountRate = (decimal)reader["discountRate"];
-                    item.code = reader["code"].ToString();
-                    if (reader["source_city"].ToString() != "") item.source_city = (long)reader["source_city"];
-                    if (reader["target_city"].ToString() != "") item.target_city = (long)reader["target_city"];
-                    if (reader["spectacle_date"].ToString() != "") item.spectacle_date = (DateTime)reader["spectacle_date"];
-                    if (reader["arrival_date"].ToString() != "") item.arrival_date = (DateTime)reader["arrival_date"];
-                    if (reader["departure_date"].ToString() != "") item.departure_date = (DateTime)reader["departure_date"];
-                    item.description = reader["description"].ToString();
-                    if (reader["IdUser"].ToString() != "") item.IdUser = (long?)reader["IdUser"];
+                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (long)reader["idCustomer"];
+                    if (reader["idCategory"].ToString() != "") item.idCategory = (long)reader["idCategory"];
+                    item.email = reader["email"].ToString();
+                    item.userName = reader["userName"].ToString();
+                    if (reader["idCard"].ToString() != "") item.idCard = (long)reader["idCard"];
+                    item.first_name = reader["first_name"].ToString();
+                    item.last_name = reader["last_name"].ToString();
+                    item.phone_number = reader["phone_number"].ToString();
+                    item.address = reader["address"].ToString();
+                    item.country = reader["country"].ToString();
+                    item.numberDoc = reader["numberDoc"].ToString();
+                    item.TypeDoc = reader["TypeDoc"].ToString();
+                    item.city = reader["city"].ToString();
+                    if (reader["idUser"].ToString() != "") item.idUser = (long)reader["idUser"];
                     if (reader["modificationDate"].ToString() != "") item.modificationDate = (DateTime)reader["modificationDate"];
 
                     dtoList.Add(item);
@@ -200,6 +184,75 @@ namespace OMSService.WSProduct.Business
             return dtoList;
         }
 
+        protected static List<RespCustomerProduct> CustomerProduct(ref SqlCommand command)
+        {
+            List<RespCustomerProduct> dtoList = new List<RespCustomerProduct>();
+            try
+            {
+                command.Connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    RespCustomerProduct item = new RespCustomerProduct();
+
+                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (int)reader["idCustomer"];
+                    item.email = reader["email"].ToString();
+                    item.first_name = reader["first_name"].ToString();
+                    item.last_name = reader["last_name"].ToString();    
+                    if (reader["idProduct"].ToString() != "") item.idProduct = (int)reader["idProduct"];
+                    item.name = reader["name"].ToString();
+
+                    dtoList.Add(item);
+
+                }
+                reader.Close();
+            }
+            catch (SqlException oEx)
+            {
+                throw oEx;
+            }
+            finally
+            {
+                command.Connection.Close();
+                command.Connection.Dispose();
+            }
+            return dtoList;
+        }
+
+        protected static List<RespTopCustomer> TopCustomer(ref SqlCommand command)
+        {
+            List<RespTopCustomer> dtoList = new List<RespTopCustomer>();
+            try
+            {
+                command.Connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    RespTopCustomer item = new RespTopCustomer();
+
+                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (int)reader["idCustomer"];
+                    item.first_name = reader["first_name"].ToString();
+                    item.last_name = reader["last_name"].ToString();
+                    if (reader["Acumulado"].ToString() != "") item.Acumulado = (decimal)reader["Acumulado"];
+   
+                    dtoList.Add(item);
+
+                }
+                reader.Close();
+            }
+            catch (SqlException oEx)
+            {
+                throw oEx;
+            }
+            finally
+            {
+                command.Connection.Close();
+                command.Connection.Dispose();
+            }
+            return dtoList;
+        }
         #endregion
 
         protected static void ExecuteNonQuery(SqlCommand command)

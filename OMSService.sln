@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.Campaing", "OMSService.Campaing\OMSService.Campaing.csproj", "{5950B2D8-F431-461B-A7B2-4DC736508269}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSCampaign", "OMSService.Campaing\OMSService.WSCampaign.csproj", "{5950B2D8-F431-461B-A7B2-4DC736508269}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSProduct", "OMSService.Product\OMSService.WSProduct.csproj", "{BD4C5DB7-5848-45E7-B16D-C2C27DE785FF}"
 EndProject
@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSOrder", "OMSService.WSOrdenes\OMSService.WSOrder.csproj", "{6AF39DAA-FB56-4A98-A693-D27915D879E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSOrdenes.Tests", "OMSService.WSOrdenes.Tests\OMSService.WSOrdenes.Tests.csproj", "{A4284620-EC32-40B1-8F7F-C990A326887E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSCustomer", "WSCustomer\OMSService.WSCustomer.csproj", "{D918A3EA-B208-4A6E-9929-813690750A0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCustomer.Tests", "WSCustomer.Tests\WSCustomer.Tests.csproj", "{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{A4284620-EC32-40B1-8F7F-C990A326887E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4284620-EC32-40B1-8F7F-C990A326887E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4284620-EC32-40B1-8F7F-C990A326887E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D918A3EA-B208-4A6E-9929-813690750A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D918A3EA-B208-4A6E-9929-813690750A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D918A3EA-B208-4A6E-9929-813690750A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D918A3EA-B208-4A6E-9929-813690750A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

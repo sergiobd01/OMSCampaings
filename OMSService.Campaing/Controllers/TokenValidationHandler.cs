@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.IdentityModel.Tokens;
 
-namespace OMSService.Campaing.Controllers
+namespace OMSService.WSCampaign.Controllers
 {
     internal class TokenValidationHandler : DelegatingHandler
     {

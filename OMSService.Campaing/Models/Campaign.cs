@@ -1,4 +1,4 @@
-namespace OMSService.Campaing.Models
+namespace OMSService.WSCampaign.Models
 {
     using System;
     using System.Collections.Generic;
@@ -28,5 +28,10 @@ namespace OMSService.Campaing.Models
         public DateTime? startDate { get; set; }
 
         public DateTime? endDate { get; set; }
+
+        public long? idUser { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? modificationDate { get; set; }
     }
 }

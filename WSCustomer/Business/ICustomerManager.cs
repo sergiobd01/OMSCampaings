@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Configuration;
-using OMSService.WSCampaign.Models;
-using OMSService.WSCampaign.Payload;
+using OMSService.WSCustomer.Models;
+using OMSService.WSCustomer.Payload;
 
-namespace OMSService.WSCampaign.Business
+namespace OMSService.WSCustomer.Business
 {
-    public class ICampaingManager
+    public class ICustomerManager
     {
-
-        public IList<Campaign> GetAllCampaing()
-        {
-            OMSModel model = new OMSModel();
-            var campaing = model.Campaign.ToList();
-            return campaing;
-        }
-
         public int Pagination()
         {
             OMSModel objContext = new OMSModel();
@@ -25,7 +17,7 @@ namespace OMSService.WSCampaign.Business
             int pages = Convert.ToInt32(ConfigurationManager.AppSettings["PAGES"]);
             try
             {
-                int count = objContext.Campaign.Count();
+                int count = objContext.Customer.Count();
                 return count / pages;
             }
             catch (Exception ext)
@@ -33,33 +25,47 @@ namespace OMSService.WSCampaign.Business
                 throw ext;
             }
         }
-
-        public Campaign GetCampaignId(long IdCampaign)
+        public Customer GetCustomerId(long IdCustomer)
         {
             OMSModel objContext = new OMSModel();
-            var campaign = new Campaign();
+            var customer = new Customer();
             try
             {
-                campaign = objContext.Campaign.First(p => p.idCampaign == IdCampaign);
+                customer = objContext.Customer.First(p => p.idCustomer == IdCustomer);
             }
             catch (Exception ext)
             {
                 throw ext;
             }
-            return campaign;
+            return customer;
         }
 
-        public Response PostCampaignCreate(Campaign campaign)
+        public Customer GetNumberDoc(string NumberDoc)
+        {
+            OMSModel objContext = new OMSModel();
+            var customer = new Customer();
+            try
+            {
+                customer = objContext.Customer.First(p => p.numberDoc == NumberDoc);
+            }
+            catch (Exception ext)
+            {
+                throw ext;
+            }
+            return customer;
+        }
+
+        public Response CustomerCreate(Customer product)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();
             try
             {
-                objContext.Campaign.Add(campaign);
+                objContext.Customer.Add(product);
                 var res = objContext.SaveChanges();
 
                 response.Code = res;
-                response.Description = "Campaña Creada";
+                response.Description = "Cliente Creado";
             }
             catch (Exception ext)
             {
@@ -70,22 +76,21 @@ namespace OMSService.WSCampaign.Business
 
             return response;
         }
-
-        public Response PostCampaignUpdate(Campaign model)
+        public Response CustomerUpdate(Customer model)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();
             try
             {
-                var campaign = objContext.Campaign.Where(p => p.idCampaign == model.idCampaign).SingleOrDefault();
+                var products = objContext.Customer.Where(p => p.idCustomer == model.idCustomer).SingleOrDefault();
 
-                if (campaign != null)
+                if (products != null)
                 {
-                    objContext.Entry(campaign).CurrentValues.SetValues(model);
+                    objContext.Entry(products).CurrentValues.SetValues(model);
                     var res = objContext.SaveChanges();
 
                     response.Code = res;
-                    response.Description = "Campaña modificada";
+                    response.Description = "Producto modificado";
                 }
             }
             catch (Exception ext)
@@ -97,22 +102,21 @@ namespace OMSService.WSCampaign.Business
 
             return response;
         }
-
-        public Response DeleteCampaign(long Idcampaign)
+        public Response DeleteCustomer(long Idproduct)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();
             try
             {
-                var campaign = objContext.Campaign.Where(p => p.idCampaign == Idcampaign).SingleOrDefault();
+                var products = objContext.Customer.Where(p => p.idCustomer == Idproduct).SingleOrDefault();
 
-                if (campaign != null)
+                if (products != null)
                 {
-                    objContext.Campaign.Remove(campaign);
+                    objContext.Customer.Remove(products);
                     var res = objContext.SaveChanges();
 
                     response.Code = res;
-                    response.Description = "Campaña Eliminada";
+                    response.Description = "Producto Eliminado";
                 }
             }
             catch (Exception ext)
@@ -125,4 +129,5 @@ namespace OMSService.WSCampaign.Business
             return response;
         }
     }
+
 }

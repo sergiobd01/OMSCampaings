@@ -1,4 +1,4 @@
-namespace OMSService.Campaing.Models
+namespace OMSService.WSCampaign.Models
 {
     using System;
     using System.Data.Entity;

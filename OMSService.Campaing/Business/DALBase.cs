@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using OMSService.WSProduct.Models;
+using OMSService.WSCampaign.Models;
 
-namespace OMSService.WSProduct.Business
+namespace OMSService.WSCampaign.Business
 {
     public class DALBase
     {
@@ -117,9 +117,45 @@ namespace OMSService.WSProduct.Business
         #region Singleton
 
 
-        protected static List<TopProducts> GetDTOListJSON<T>(ref SqlCommand command) where T : CommonBase
+        //protected static List<TopProducts> GetDTOListJSON<T>(ref SqlCommand command) where T : CommonBase
+        //{
+        //    List<TopProducts> dtoList = new List<TopProducts>();
+        //    try
+        //    {
+        //        command.Connection.Open();
+        //        SqlDataReader reader = command.ExecuteReader();
+
+        //        while (reader.Read())
+        //        {
+        //            TopProducts item = new TopProducts()
+        //            {
+        //                IdProduct = (long)reader["idProduct"],
+        //                Name = reader["name"].ToString(),
+        //                Description = reader["description"].ToString(),
+        //                IdEntertainment = (long)reader["idEntertainment"],
+        //                Cantidad = (int)reader["cantidad"]
+
+        //            };
+        //            dtoList.Add(item);
+
+        //        }
+        //        reader.Close();
+        //    }
+        //    catch (SqlException oEx)
+        //    {
+        //        throw oEx;
+        //    }
+        //    finally
+        //    {
+        //        command.Connection.Close();
+        //        command.Connection.Dispose();
+        //    }
+        //    return dtoList;
+        //}
+
+        protected static List<Campaign> GetCampaing(ref SqlCommand command) //where T : CommonBase
         {
-            List<TopProducts> dtoList = new List<TopProducts>();
+            List<Campaign> dtoList = new List<Campaign>();
             try
             {
                 command.Connection.Open();
@@ -127,60 +163,17 @@ namespace OMSService.WSProduct.Business
 
                 while (reader.Read())
                 {
-                    TopProducts item = new TopProducts()
-                    {
-                        IdProduct = (long)reader["idProduct"],
-                        Name = reader["name"].ToString(),
-                        Description = reader["description"].ToString(),
-                        IdEntertainment = (long)reader["idEntertainment"],
-                        Cantidad = (int)reader["cantidad"]
+                    Campaign item = new Campaign();
 
-                    };
-                    dtoList.Add(item);
-
-                }
-                reader.Close();
-            }
-            catch (SqlException oEx)
-            {
-                throw oEx;
-            }
-            finally
-            {
-                command.Connection.Close();
-                command.Connection.Dispose();
-            }
-            return dtoList;
-        }
-
-        protected static List<Product> GetProducts(ref SqlCommand command) //where T : CommonBase
-        {
-            List<Product> dtoList = new List<Product>();
-            try
-            {
-                command.Connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-     
-                while (reader.Read())
-                {
-                    Product item = new Product();
-
-                    if (reader["idProduct"].ToString() != "") item.idProduct = (long)reader["idProduct"];
-                    if (reader["idTransport"].ToString() != "") item.idTransport = (long)reader["idTransport"];
-                    if (reader["idEntertainment"].ToString() != "") item.idEntertainment = (long)reader["idEntertainment"];
-                    if (reader["idHotel"].ToString() != "") item.idHotel = (long)reader["idHotel"];
+                    if (reader["idCampaign"].ToString() != "") item.idCampaign = (long)reader["idCampaign"];
                     item.name = reader["name"].ToString();
+                    if (reader["idStateCampaign"].ToString() != "") item.idStateCampaign = (long)reader["idStateCampaign"];
                     item.urlImage = reader["urlImage"].ToString();
-                    if (reader["price"].ToString() != "") item.price = (decimal)reader["price"];
-                    if (reader["discountRate"].ToString() != "") item.discountRate = (decimal)reader["discountRate"];
-                    item.code = reader["code"].ToString();
-                    if (reader["source_city"].ToString() != "") item.source_city = (long)reader["source_city"];
-                    if (reader["target_city"].ToString() != "") item.target_city = (long)reader["target_city"];
-                    if (reader["spectacle_date"].ToString() != "") item.spectacle_date = (DateTime)reader["spectacle_date"];
-                    if (reader["arrival_date"].ToString() != "") item.arrival_date = (DateTime)reader["arrival_date"];
-                    if (reader["departure_date"].ToString() != "") item.departure_date = (DateTime)reader["departure_date"];
                     item.description = reader["description"].ToString();
-                    if (reader["IdUser"].ToString() != "") item.IdUser = (long?)reader["IdUser"];
+                    if (reader["idProduct"].ToString() != "") item.idProduct = (long)reader["idProduct"];
+                    if (reader["startDate"].ToString() != "") item.startDate = (DateTime)reader["startDate"];
+                    if (reader["endDate"].ToString() != "") item.startDate = (DateTime)reader["endDate"];
+                    if (reader["idUser"].ToString() != "") item.idUser = (long)reader["idUser"];
                     if (reader["modificationDate"].ToString() != "") item.modificationDate = (DateTime)reader["modificationDate"];
 
                     dtoList.Add(item);

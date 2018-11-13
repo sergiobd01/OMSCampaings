@@ -1,8 +1,8 @@
 ﻿using System;  
 using System.Web.Http;  
-using OMSService.Campaing.Controllers;
+using OMSService.WSCampaign.Controllers;
 
-namespace OMSService.Campaing
+namespace OMSService.WSCampaign
 {
     public static class WebApiConfig
     {

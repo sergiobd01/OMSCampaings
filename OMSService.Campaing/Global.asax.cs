@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 
-namespace OMSService.Campaing
+namespace OMSService.WSCampaign
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

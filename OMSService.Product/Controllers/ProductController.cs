@@ -88,6 +88,7 @@ namespace OMSService.WSProduct.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("UpdateProduct")]
         public IHttpActionResult PostUpdateProduct(Product product)
