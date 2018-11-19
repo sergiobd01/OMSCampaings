@@ -64,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WSCustomer\OMSService.WSCustomer.csproj">
+    <ProjectReference Include="..\OMSService.WSCustomer\OMSService.WSCustomer.csproj">
       <Project>{D918A3EA-B208-4A6E-9929-813690750A0A}</Project>
       <Name>OMSService.WSCustomer</Name>
     </ProjectReference>

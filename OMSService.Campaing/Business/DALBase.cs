@@ -116,43 +116,6 @@ namespace OMSService.WSCampaign.Business
 
         #region Singleton
 
-
-        //protected static List<TopProducts> GetDTOListJSON<T>(ref SqlCommand command) where T : CommonBase
-        //{
-        //    List<TopProducts> dtoList = new List<TopProducts>();
-        //    try
-        //    {
-        //        command.Connection.Open();
-        //        SqlDataReader reader = command.ExecuteReader();
-
-        //        while (reader.Read())
-        //        {
-        //            TopProducts item = new TopProducts()
-        //            {
-        //                IdProduct = (long)reader["idProduct"],
-        //                Name = reader["name"].ToString(),
-        //                Description = reader["description"].ToString(),
-        //                IdEntertainment = (long)reader["idEntertainment"],
-        //                Cantidad = (int)reader["cantidad"]
-
-        //            };
-        //            dtoList.Add(item);
-
-        //        }
-        //        reader.Close();
-        //    }
-        //    catch (SqlException oEx)
-        //    {
-        //        throw oEx;
-        //    }
-        //    finally
-        //    {
-        //        command.Connection.Close();
-        //        command.Connection.Dispose();
-        //    }
-        //    return dtoList;
-        //}
-
         protected static List<Campaign> GetCampaing(ref SqlCommand command) //where T : CommonBase
         {
             List<Campaign> dtoList = new List<Campaign>();

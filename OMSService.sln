@@ -17,9 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSOrder", "OMSSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSOrdenes.Tests", "OMSService.WSOrdenes.Tests\OMSService.WSOrdenes.Tests.csproj", "{A4284620-EC32-40B1-8F7F-C990A326887E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSCustomer", "WSCustomer\OMSService.WSCustomer.csproj", "{D918A3EA-B208-4A6E-9929-813690750A0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OMSService.WSCustomer", "OMSService.WSCustomer\OMSService.WSCustomer.csproj", "{D918A3EA-B208-4A6E-9929-813690750A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCustomer.Tests", "WSCustomer.Tests\WSCustomer.Tests.csproj", "{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCustomer.Tests", "OMSService.WSCustomer.Tests\WSCustomer.Tests.csproj", "{B3687C8A-282B-4E2F-AC48-77F3996D8B3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

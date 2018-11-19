@@ -196,11 +196,11 @@ namespace OMSService.WSCustomer.Business
                 {
                     RespCustomerProduct item = new RespCustomerProduct();
 
-                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (int)reader["idCustomer"];
+                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (long)reader["idCustomer"];
                     item.email = reader["email"].ToString();
                     item.first_name = reader["first_name"].ToString();
                     item.last_name = reader["last_name"].ToString();    
-                    if (reader["idProduct"].ToString() != "") item.idProduct = (int)reader["idProduct"];
+                    if (reader["idProduct"].ToString() != "") item.idProduct = (long)reader["idProduct"];
                     item.name = reader["name"].ToString();
 
                     dtoList.Add(item);
@@ -232,7 +232,7 @@ namespace OMSService.WSCustomer.Business
                 {
                     RespTopCustomer item = new RespTopCustomer();
 
-                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (int)reader["idCustomer"];
+                    if (reader["idCustomer"].ToString() != "") item.idCustomer = (long)reader["idCustomer"];
                     item.first_name = reader["first_name"].ToString();
                     item.last_name = reader["last_name"].ToString();
                     if (reader["Acumulado"].ToString() != "") item.Acumulado = (decimal)reader["Acumulado"];
