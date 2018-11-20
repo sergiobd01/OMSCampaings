@@ -54,8 +54,8 @@ namespace OMSService.WSOrder.Controllers
         public IHttpActionResult OrderCancel(long Id)
         {
             OrderManager mord = new OrderManager();
-            var order = mord.OrderCancel(Id);
-            return Ok(order);
+            var response = mord.OrderCancel(Id);
+            return Ok(response);
         }
     }
 }

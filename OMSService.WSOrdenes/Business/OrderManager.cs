@@ -26,11 +26,10 @@ namespace OMSService.WSOrder.Business
             }
             return Order;
         }
-        public Order OrderCancel(long IdOrder)
+        public Response OrderCancel(long IdOrder)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();
-            var Order = new Order();
             try
             {
                 var order = objContext.Order.Where(p => p.idOrder == IdOrder).SingleOrDefault();
@@ -49,7 +48,7 @@ namespace OMSService.WSOrder.Business
             {
                 throw ext;
             }
-            return Order;
+            return response;
         }
     }
 }
