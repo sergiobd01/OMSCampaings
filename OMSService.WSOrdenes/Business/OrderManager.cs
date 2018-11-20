@@ -26,7 +26,7 @@ namespace OMSService.WSOrder.Business
             }
             return Order;
         }
-        public Order DeleteOrder(long IdOrder)
+        public Order OrderCancel(long IdOrder)
         {
             var response = new Response();
             OMSModel objContext = new OMSModel();

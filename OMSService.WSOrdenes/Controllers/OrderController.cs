@@ -42,10 +42,19 @@ namespace OMSService.WSOrder.Controllers
 
         [HttpGet]
         [Route("GetOrderClosed")]
-        public IHttpActionResult GetOrderClosed(RequestOrder requestProduct)
+        public IHttpActionResult GetOrderClosed()
         {
             DALOrder mord = new DALOrder();
             var order = mord.GetOrderClosed();
+            return Ok(order);
+        }
+
+        [HttpGet]
+        [Route("GetOrderCancel")]
+        public IHttpActionResult OrderCancel(long Id)
+        {
+            OrderManager mord = new OrderManager();
+            var order = mord.OrderCancel(Id);
             return Ok(order);
         }
     }
